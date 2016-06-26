@@ -6,31 +6,55 @@
 </description>
     <link>http://x86.rocks/</link>
     <atom:link href="http://x86.rocks/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 27 Mar 2016 10:51:10 -0500</pubDate>
-    <lastBuildDate>Sun, 27 Mar 2016 10:51:10 -0500</lastBuildDate>
-    <generator>Jekyll v3.0.3</generator>
+    <pubDate>Sat, 25 Jun 2016 20:26:15 -0500</pubDate>
+    <lastBuildDate>Sat, 25 Jun 2016 20:26:15 -0500</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
     
       <item>
-        <title>Using Async.js with AWS Node.js CLI SDK</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;This post assumes working knowledge of Node.js &amp;amp; AWS SDK for Node.js&lt;/p&gt;
-&lt;/blockquote&gt;
+        <title>Functional Programming in the Cloud</title>
+        <description>&lt;h1 id=&quot;functions-as-a-service&quot;&gt;Functions as a Service&lt;/h1&gt;
 
-&lt;p&gt;Node.js is a fantastic piece of software. It’s amazing how much we can do with just  a few lines of code, and async nature of Node.js is a real plus for apps with high volume I/O operations. But working with callback model of nodejs can be complicated at times and given the fact that AWS SDK for node relies not just only  on callbacks but on very particular programming patterns which uses output from one function call as input to another, for e.g., while working with Amazon S3 or Amazon Glacier we might create a bucket or an archive, as the case maybe, and based on success or failure of the result we might take next step in our code which could be to either upload a file in case of success or collect and log failure details in case of exceptions.&lt;/p&gt;
+&lt;p&gt;Functional programming paradigm has been around for quite some time and its very popular in programming circles but its use had remain limited to academia and some very esoteric use cases. But recently, there has been a new found interest in this paradigm in Cloud space and every vendor either has an offering around it or slated to have one. In this post we will examine why functional paradigm is more relevant in cloud and how we can take benefit of it.&lt;/p&gt;
 
-&lt;p&gt;Building a maintainable (read sane) solution while using nodeJS + AWS SDK can be really challenging, but thank god for making Async.js on the seventh day.&lt;/p&gt;
+&lt;p&gt;First let’s see what functional programming is at 50,000 ft. Its a philosophy in which a method/function does not have side effect and does not alter the global state of an object. The functions which adhere to this philosophy are called pure functions and they are idempotent in a sense that they can be executed n number of times and there output will remain the same when same parameters are passed. Mathematically speaking&lt;/p&gt;
 
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-mathml&quot; data-lang=&quot;mathml&quot;&gt;f(x,y) =&amp;gt; {z}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;i.e. An output of a function f taking parameter x &amp;amp; y will always map to a set z. Some example of very popular modern functional programming languages are Haskell and Scala.&lt;/p&gt;
+
+&lt;p&gt;And how they are relevant to the Cloud? Ask any Cloud Sales Executive and they would reply (and I quote) &lt;code class=&quot;highlighter-rouge&quot;&gt;Better Scalability, Better Manageability, Keeping Operational Costs in Check&lt;/code&gt; and some of the seasoned ones will also throw in buzz words like &lt;code class=&quot;highlighter-rouge&quot;&gt;Agility, HIPAA/NIST/FedRAMP Compliance, Better Line of Sight on IT infrastructure cost centers&lt;/code&gt; etc. While these may sound as pure demagoguery, they do have some truth in them.&lt;/p&gt;
+
+&lt;p&gt;With &lt;strong&gt;Functions As A Service or FaaS&lt;/strong&gt; as I like to call them (there, I threw in one of my one buzz words), you write  a function which is invoked every time a specific event occurs. Once the event is &lt;em&gt;serviced&lt;/em&gt;, the underlying infrastructure on which it is executed &lt;em&gt;disappears&lt;/em&gt;. Think about it in this way, there is a container inside which your code executes in response to an event and once that event is handled your container will be disposed of if there are no more events to handle. If multiple events occur at the same time then one container is created to handle each of the event and the Cloud will take care of requesting routing, load balancing and resource management. And what are the sources of these events? These events could stem from a range of sources like a Rest API call, a monitoring alert created on a resource like a VM, a message sent to a message queue, a database trigger, a scheduled task or a chron job.&lt;/p&gt;
+
+&lt;p&gt;Let’s take an example of the recently concluded Brexit referendum. Say for example, all British citizens are required to either download an App or login to the British government website to cast there vote (authentication and singularity of each vote is left as exercise to the reader). If you are an infrastructure guy then you have already sweated over the load backend services for the App &amp;amp; Website will have to face. Now, assume that the logic of recording a vote is implemented as an AWS Lambda and an API is hooked up with it and every time some one would cast a vote a Lambda function would be executed and the vote will be recorded in AWS Dynamo DB or Azure Document DB. With this solution whole referendum process could virtually be completed without having to deploy a single server IaaS or PaaS for backend services. Sounds to good to be true, right? At the time of writing this none of the FaaS offering are infinitely scalable, they do have limits attached to them but you could get around them using throttling or via multi-region deployment.&lt;/p&gt;
+
+&lt;p&gt;And how is this beneficial in terms of all the “bilities”? With FaaS all you have to do is select a runtime (NodeJS, Python, etc.), amount of RAM and an execution timeout after which your code would be terminated. But isn’t this similar to PaaS? No &amp;amp; Yes. No because you don’t have to setup load balancing or worry about an instance failing due to resource quench etc. And yes because just like PaaS you need to select underlying runtime and some resource allocation.&lt;/p&gt;
+
+&lt;p&gt;But the major distinction over  here is, your FaaS container won’t hang around forever if it has nothing to do and you will always have enough containers executing to service your load and your function executes only in response to an event, you can’t start a server here and actively listen for requests.&lt;/p&gt;
+
+&lt;p&gt;Here’s are some of the FaaS offerings:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Amazon WebServices - &lt;a href=&quot;http://docs.aws.amazon.com/lambda/latest/dg/welcome.html&quot;&gt;Lambda&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;IBM BlueMix - &lt;a href=&quot;https://developer.ibm.com/openwhisk/&quot;&gt;OpenWhisk&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Microsoft Azure - &lt;a href=&quot;https://azure.microsoft.com/en-us/services/functions/&quot;&gt;Functions&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;auth0 - &lt;a href=&quot;https://webtask.io/&quot;&gt;Webtask&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So fire up your favorite Cloud today and give functional paradigm a spin.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 26 Mar 2016 14:19:10 -0500</pubDate>
-        <link>http://x86.rocks/aws/nodejs/asyncjs/2016/03/26/Using-asyncjs-with-AWS-node-SDK.html</link>
-        <guid isPermaLink="true">http://x86.rocks/aws/nodejs/asyncjs/2016/03/26/Using-asyncjs-with-AWS-node-SDK.html</guid>
+        <pubDate>Sat, 25 Jun 2016 14:19:10 -0500</pubDate>
+        <link>http://x86.rocks/aws%20lambda/functional%20programming/cloud/azure%20functions/2016/06/25/Functional-Programming-in-the-Cloud.html</link>
+        <guid isPermaLink="true">http://x86.rocks/aws%20lambda/functional%20programming/cloud/azure%20functions/2016/06/25/Functional-Programming-in-the-Cloud.html</guid>
         
         
-        <category>AWS</category>
+        <category>AWS Lambda</category>
         
-        <category>nodeJS</category>
+        <category>Functional Programming</category>
         
-        <category>asyncJS</category>
+        <category>Cloud</category>
+        
+        <category>Azure Functions</category>
         
       </item>
     
