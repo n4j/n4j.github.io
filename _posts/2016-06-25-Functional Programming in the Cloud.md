@@ -3,6 +3,7 @@ layout: post
 title:  "Functional Programming in the Cloud"
 date:   2016-06-25 14:19:10 -0500
 categories: [AWS Lambda, Functional Programming, Cloud, Azure Functions]
+keywords: "AWS Lambda, Functional Programming, Cloud, Azure Functions"
 ---
 # Functions as a Service
 
