@@ -4,11 +4,11 @@
     <title>The x86 Blog</title>
     <description>A Computer is an instrument whose music is ideas
 </description>
-    <link>http://x86.rocks/</link>
-    <atom:link href="http://x86.rocks/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 25 Jun 2016 20:48:44 -0500</pubDate>
-    <lastBuildDate>Sat, 25 Jun 2016 20:48:44 -0500</lastBuildDate>
-    <generator>Jekyll v3.1.6</generator>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 27 Aug 2022 12:01:50 +0530</pubDate>
+    <lastBuildDate>Sat, 27 Aug 2022 12:01:50 +0530</lastBuildDate>
+    <generator>Jekyll v4.2.2</generator>
     
       <item>
         <title>Functional Programming in the Cloud</title>
@@ -22,7 +22,7 @@
 
 &lt;p&gt;i.e. An output of a function f taking parameter x &amp;amp; y will always map to a set z. Some example of very popular modern functional programming languages are Haskell and Scala.&lt;/p&gt;
 
-&lt;p&gt;And how they are relevant to the Cloud? Ask any Cloud Sales Executive and they would reply (and I quote) &lt;code class=&quot;highlighter-rouge&quot;&gt;Better Scalability, Better Manageability, Keeping Operational Costs in Check&lt;/code&gt; and some of the seasoned ones will also throw in buzz words like &lt;code class=&quot;highlighter-rouge&quot;&gt;Agility, HIPAA/NIST/FedRAMP Compliance, Better Line of Sight on IT infrastructure cost centers&lt;/code&gt; etc. While these may sound as pure demagoguery, they do have some truth in them.&lt;/p&gt;
+&lt;p&gt;And how they are relevant to the Cloud? Ask any Cloud Sales Executive and they would reply (and I quote) &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Better Scalability, Better Manageability, Keeping Operational Costs in Check&lt;/code&gt; and some of the seasoned ones will also throw in buzz words like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Agility, HIPAA/NIST/FedRAMP Compliance, Better Line of Sight on IT infrastructure cost centers&lt;/code&gt; etc. While these may sound as pure demagoguery, they do have some truth in them.&lt;/p&gt;
 
 &lt;p&gt;With &lt;strong&gt;Functions As A Service or FaaS&lt;/strong&gt; as I like to call them (there, I threw in one of my one buzz words), you write  a function which is invoked every time a specific event occurs. Once the event is &lt;em&gt;serviced&lt;/em&gt;, the underlying infrastructure on which it is executed &lt;em&gt;disappears&lt;/em&gt;. Think about it in this way, there is a container inside which your code executes in response to an event and once that event is handled your container will be disposed of if there are no more events to handle. If multiple events occur at the same time then one container is created to handle each of the event and the Cloud will take care of requesting routing, load balancing and resource management. And what are the sources of these events? These events could stem from a range of sources like a Rest API call, a monitoring alert created on a resource like a VM, a message sent to a message queue, a database trigger, a scheduled task or a chron job.&lt;/p&gt;
 
@@ -43,9 +43,9 @@
 
 &lt;p&gt;So fire up your favorite Cloud today and give functional paradigm a spin.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 25 Jun 2016 14:19:10 -0500</pubDate>
-        <link>http://x86.rocks/aws%20lambda/functional%20programming/cloud/azure%20functions/2016/06/25/Functional-Programming-in-the-Cloud.html</link>
-        <guid isPermaLink="true">http://x86.rocks/aws%20lambda/functional%20programming/cloud/azure%20functions/2016/06/25/Functional-Programming-in-the-Cloud.html</guid>
+        <pubDate>Sun, 26 Jun 2016 00:49:10 +0530</pubDate>
+        <link>http://localhost:4000/aws%20lambda/functional%20programming/cloud/azure%20functions/2016/06/26/Functional-Programming-in-the-Cloud.html</link>
+        <guid isPermaLink="true">http://localhost:4000/aws%20lambda/functional%20programming/cloud/azure%20functions/2016/06/26/Functional-Programming-in-the-Cloud.html</guid>
         
         
         <category>AWS Lambda</category>
@@ -62,7 +62,7 @@
         <title>AWS API Gateway + Lambda gotchas</title>
         <description>&lt;h1 id=&quot;aws-api-gateway--lambda-gotchas&quot;&gt;AWS API Gateway + Lambda gotchas&lt;/h1&gt;
 
-&lt;p&gt;Combining &lt;code class=&quot;highlighter-rouge&quot;&gt;AWS API Gateway&lt;/code&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;AWS Lambda&lt;/code&gt; makes it possible to create a serverless backend architecture. While this has opened a whole new bunch of possiblities in terms of scaling vis-a-vis cost saving, there are several technical and architectural gotchas one must address to fully utilize them.&lt;/p&gt;
+&lt;p&gt;Combining &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AWS API Gateway&lt;/code&gt; with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AWS Lambda&lt;/code&gt; makes it possible to create a serverless backend architecture. While this has opened a whole new bunch of possiblities in terms of scaling vis-a-vis cost saving, there are several technical and architectural gotchas one must address to fully utilize them.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;This post talks about pitfalls I encountered while working with API Gateway and Lambda, if you are new to this subject then read this nice blogpost from TechCrunch &lt;a href=&quot;http://techcrunch.com/2015/11/24/aws-lamda-makes-serverless-applications-a-reality/&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
@@ -78,32 +78,32 @@
 &lt;/ul&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;	&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;s2&quot;&gt;&quot;Sid&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   
-		&lt;span class=&quot;s2&quot;&gt;&quot;Effect&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Allow&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		&lt;span class=&quot;s2&quot;&gt;&quot;Principal&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;s2&quot;&gt;&quot;Service&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;apigateway.amazonaws.com&quot;&lt;/span&gt;
+		&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Sid&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   
+		&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Effect&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Allow&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Principal&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Service&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;apigateway.amazonaws.com&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
 		&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-		&lt;span class=&quot;s2&quot;&gt;&quot;Action&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;sts:AssumeRole&quot;&lt;/span&gt;  
+		&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Action&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sts:AssumeRole&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;  
 	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Also, if you are using other AWS services like CloudWatch or S3, then your IAM role should have permission to execute these services too.&lt;/p&gt;
 
-&lt;h3 id=&quot;your-nodejs-zip-package-must-have-packagejson-file&quot;&gt;Your nodejs zip package must have &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt; file&lt;/h3&gt;
+&lt;h3 id=&quot;your-nodejs-zip-package-must-have-packagejson-file&quot;&gt;Your nodejs zip package must have &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;package.json&lt;/code&gt; file&lt;/h3&gt;
 
-&lt;p&gt;For NodeJS if you are uploading a zip file containing source code then your zip file must contain a package.json file and it must indicate the &lt;strong&gt;main&lt;/strong&gt; source code file. Otherwise AWS Lambda will probably throw an error indicating that it could not find the &lt;code class=&quot;highlighter-rouge&quot;&gt;index.handler&lt;/code&gt; (or whatever function name configured as the event handler). For e.g., assuming your main file is index, add this line to your &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;main&quot;: &quot;index.js&quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;For NodeJS if you are uploading a zip file containing source code then your zip file must contain a package.json file and it must indicate the &lt;strong&gt;main&lt;/strong&gt; source code file. Otherwise AWS Lambda will probably throw an error indicating that it could not find the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.handler&lt;/code&gt; (or whatever function name configured as the event handler). For e.g., assuming your main file is index, add this line to your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;package.json&lt;/code&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;main&quot;: &quot;index.js&quot;&lt;/code&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;limited-disk-access&quot;&gt;Limited disk access&lt;/h3&gt;
-&lt;p&gt;While Lambda does allow you to upload custom binaries in your package and execute them, it does not allow you to read local files or access any other directories except &lt;code class=&quot;highlighter-rouge&quot;&gt;/tmp&lt;/code&gt;. If you attempt to do so you would encounter an &lt;code class=&quot;highlighter-rouge&quot;&gt;EOPEN&lt;/code&gt;  while opening a file and &lt;code class=&quot;highlighter-rouge&quot;&gt;EACCES&lt;/code&gt; while creating directories.&lt;/p&gt;
+&lt;p&gt;While Lambda does allow you to upload custom binaries in your package and execute them, it does not allow you to read local files or access any other directories except &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tmp&lt;/code&gt;. If you attempt to do so you would encounter an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EOPEN&lt;/code&gt;  while opening a file and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EACCES&lt;/code&gt; while creating directories.&lt;/p&gt;
 
-&lt;p&gt;Also, the storage space provided by Lambda is ephemeral and limited to &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;500 MBs&lt;/code&gt;&lt;/strong&gt; at this time, for persistence storage AWS recommends using S3 but any other cloud storage solution like Azure Blob Storage can be used&lt;/p&gt;
+&lt;p&gt;Also, the storage space provided by Lambda is ephemeral and limited to &lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;500 MBs&lt;/code&gt;&lt;/strong&gt; at this time, for persistence storage AWS recommends using S3 but any other cloud storage solution like Azure Blob Storage can be used&lt;/p&gt;
 
 &lt;h1 id=&quot;further-reading&quot;&gt;Further Reading&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&quot;https://forums.aws.amazon.com/thread.jspa?messageID=595370&quot;&gt;Better Together: Amazon ECS and AWS Lambda&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sat, 26 Mar 2016 14:19:10 -0500</pubDate>
-        <link>http://x86.rocks/aws/aws%20api%20gateway/lambda/2016/03/26/API-Gateway-+-Lambda-gotcahs.html</link>
-        <guid isPermaLink="true">http://x86.rocks/aws/aws%20api%20gateway/lambda/2016/03/26/API-Gateway-+-Lambda-gotcahs.html</guid>
+        <pubDate>Sun, 27 Mar 2016 00:49:10 +0530</pubDate>
+        <link>http://localhost:4000/aws/aws%20api%20gateway/lambda/2016/03/27/API-Gateway-+-Lambda-gotcahs.html</link>
+        <guid isPermaLink="true">http://localhost:4000/aws/aws%20api%20gateway/lambda/2016/03/27/API-Gateway-+-Lambda-gotcahs.html</guid>
         
         
         <category>AWS</category>

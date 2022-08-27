@@ -1,0 +1,41 @@
+I"�<h1 id="aws-api-gateway--lambda-gotchas">AWS API Gateway + Lambda gotchas</h1>
+
+<p>Combining <code class="language-plaintext highlighter-rouge">AWS API Gateway</code> with <code class="language-plaintext highlighter-rouge">AWS Lambda</code> makes it possible to create a serverless backend architecture. While this has opened a whole new bunch of possiblities in terms of scaling vis-a-vis cost saving, there are several technical and architectural gotchas one must address to fully utilize them.</p>
+
+<blockquote>
+  <p>This post talks about pitfalls I encountered while working with API Gateway and Lambda, if you are new to this subject then read this nice blogpost from TechCrunch <a href="http://techcrunch.com/2015/11/24/aws-lamda-makes-serverless-applications-a-reality/">here</a></p>
+</blockquote>
+
+<h3 id="the-iam-role-assumption-blues">The IAM role assumption blues</h3>
+
+<p>Your API gateway endpoint needs to <em>assume</em> the IAM role which you had provided and API Gateway, like any other service, must have permission to assume this role. AWS documentation clearly mentions this, however, it’s easy to overlook this while in haste.</p>
+
+<ul>
+  <li>Open the IAM console and select the role which you want your API to assume for Lambda execution</li>
+  <li>Click on Trust Relationship tab and click on edit, on the screen which follows allow API Gateway service Id “apigateway.amazonwaws.com” to assume this IAM role by adding the following statement</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript">	<span class="p">{</span>
+		<span class="dl">"</span><span class="s2">Sid</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>   
+		<span class="dl">"</span><span class="s2">Effect</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Allow</span><span class="dl">"</span><span class="p">,</span>
+		<span class="dl">"</span><span class="s2">Principal</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+		<span class="dl">"</span><span class="s2">Service</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">apigateway.amazonaws.com</span><span class="dl">"</span>
+		<span class="p">},</span>
+		<span class="dl">"</span><span class="s2">Action</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sts:AssumeRole</span><span class="dl">"</span>  
+	<span class="p">}</span></code></pre></figure>
+
+<p>Also, if you are using other AWS services like CloudWatch or S3, then your IAM role should have permission to execute these services too.</p>
+
+<h3 id="your-nodejs-zip-package-must-have-packagejson-file">Your nodejs zip package must have <code class="language-plaintext highlighter-rouge">package.json</code> file</h3>
+
+<p>For NodeJS if you are uploading a zip file containing source code then your zip file must contain a package.json file and it must indicate the <strong>main</strong> source code file. Otherwise AWS Lambda will probably throw an error indicating that it could not find the <code class="language-plaintext highlighter-rouge">index.handler</code> (or whatever function name configured as the event handler). For e.g., assuming your main file is index, add this line to your <code class="language-plaintext highlighter-rouge">package.json</code>
+<code class="language-plaintext highlighter-rouge">"main": "index.js"</code></p>
+
+<h3 id="limited-disk-access">Limited disk access</h3>
+<p>While Lambda does allow you to upload custom binaries in your package and execute them, it does not allow you to read local files or access any other directories except <code class="language-plaintext highlighter-rouge">/tmp</code>. If you attempt to do so you would encounter an <code class="language-plaintext highlighter-rouge">EOPEN</code>  while opening a file and <code class="language-plaintext highlighter-rouge">EACCES</code> while creating directories.</p>
+
+<p>Also, the storage space provided by Lambda is ephemeral and limited to <strong><code class="language-plaintext highlighter-rouge">500 MBs</code></strong> at this time, for persistence storage AWS recommends using S3 but any other cloud storage solution like Azure Blob Storage can be used</p>
+
+<h1 id="further-reading">Further Reading</h1>
+<p><a href="https://forums.aws.amazon.com/thread.jspa?messageID=595370">Better Together: Amazon ECS and AWS Lambda</a></p>
+:ET
